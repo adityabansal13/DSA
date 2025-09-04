@@ -1,4 +1,4 @@
-package Assignment10;
+package AssignmentGraphs;
 
 import java.util.*;
 
@@ -158,4 +158,73 @@ public class Graph {
 		return false;
 	}
 
+	public void BFT() {
+		Queue<Integer> q = new LinkedList<>();
+		HashSet<Integer> visited = new HashSet<>();
+		int components = 0;
+		for (int key : map.keySet()) {
+			if (visited.contains(key)) {
+				components++; // this tells the number of disconnected graphs
+				continue;
+			}
+			q.add(key);
+			while (!q.isEmpty()) {
+				// 1. remove
+				int rv = q.poll();
+
+				// 2. ignore
+				if (visited.contains(rv)) { // this tells if cycle is present in graph
+					continue;
+				}
+
+				// 3. visited add
+				visited.add(rv);
+
+				// 4. self work
+				System.out.print(rv + " ");
+
+				// 5. add univisited nbrs
+				for (int nbrs : map.get(key).keySet()) {
+					if (!visited.contains(nbrs)) {
+						q.add(nbrs);
+					}
+				}
+			}
+		}
+	}
+
+	public void DFT() {
+		Stack<Integer> st = new Stack<>();
+		HashSet<Integer> visited = new HashSet<>();
+		for (int key : map.keySet()) {
+			int components = 0;
+			if (!visited.contains(key)) {
+				components++;
+				continue;
+			}
+			st.add(key);
+			while (!st.isEmpty()) {
+				// 1. remove
+				int rv = st.pop();
+
+				// 2. ignore
+				if (visited.contains(rv)) { // this tells if cycle is present in graph
+					continue;
+				}
+
+				// 3. visited add
+				visited.add(rv);
+
+				// 4. self work
+				System.out.print(rv + " ");
+
+				// 5. add univisited nbrs
+				for (int nbrs : map.get(key).keySet()) {
+					if (!visited.contains(nbrs)) {
+						st.push(nbrs);
+					}
+				}
+			}
+		}
+	}
 }

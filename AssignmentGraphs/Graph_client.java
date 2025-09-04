@@ -1,8 +1,4 @@
-package Assignment10;
-
-import java.util.HashSet;
-
-import Assignment10.Graph;
+package AssignmentGraphs;
 
 public class Graph_client {
 
@@ -28,6 +24,7 @@ public class Graph_client {
 
 		System.out.println(g.BFS(1, 6));
 		System.out.println(g.DFS(1, 6));
+		
 	}
 
 }

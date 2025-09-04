@@ -7,39 +7,41 @@ public class Unlock {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
-		int k = sc.nextInt();
-		PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder());
+		long k = sc.nextLong();
 		int[] arr = new int[n];
+
+		HashMap<Integer, Integer> map = new HashMap<>();
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = sc.nextInt();
-			pq.add(arr[i]);
+			map.put(arr[i], i);
 		}
 
-//		for (int i = 0; i < n; i++) {
-//			System.out.println(pq.poll());
-//		}
+		int i = 0;
+		int want = n;
 
-		for (int i = 0; i < arr.length; i++) {
-			int a = pq.poll();
-			int v = arr[i];
-			if (arr[i] < a) {
-				arr[i] = a;
+		while (i < n && k > 0 && want > 0) {
+			if(arr[i] == want) {
+				i++;
+				want--;
+				continue;
 			}
-			for (int j = i + 1; j < arr.length; j++) {
-				if (arr[j] == a) {
-					arr[j] = v;
-				}
-			}
-			if (k == 0) {
-				break;
-			}
+			int idx = map.get(want);
+			int val = arr[i];
+
+			arr[i] = want;
+			arr[idx] = val;
+
+			map.put(want, i);
+			map.put(val, idx);
+
 			k--;
+			i++;
+			want--;
 		}
 
-		for (int i = 0; i < arr.length; i++) {
-			System.out.print(arr[i] + " ");
+		for (int j = 0; j < arr.length; j++) {
+			System.out.print(arr[j] + " ");
 		}
-
 	}
 
 }

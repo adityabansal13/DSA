@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
 
-// leetcode 215
+// leetcode 261
 public class Graph_Valid_Tree {
 	class Solution {
 		public boolean validTree(int n, int[][] edges) {
