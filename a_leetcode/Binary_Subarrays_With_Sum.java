@@ -1,4 +1,4 @@
-package a_coursendSlidingWindow;
+package a_leetcode;
 
 public class Binary_Subarrays_With_Sum {
 
